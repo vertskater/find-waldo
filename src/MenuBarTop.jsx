@@ -2,9 +2,9 @@ import { mainStyle, imgStyling } from "./styling";
 import { Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 
-import Timer from "./Timer";
+import ShowBestScore from "./ShowBestScore";
 
-export default function MenuBarTop({ foundMonster }) {
+export default function MenuBarTop({ foundMonster, timer }) {
   const sullyImg = process.env.PUBLIC_URL + "/sully.webp";
   const mikeImg = process.env.PUBLIC_URL + "mike.webp";
   const fuzzyImg = process.env.PUBLIC_URL + "fuzzy.webp";
@@ -58,12 +58,17 @@ export default function MenuBarTop({ foundMonster }) {
           </Typography>
         </div>
       )}
-      {foundAll === false && <Timer />}
+      {foundAll === false && (
+        <div style={imgStyling}>
+          <span id="timer">{timer} </span> Seconds
+        </div>
+      )}
       {foundAll && (
         <Typography variant="h3" component="h3">
           Yeah you found all Monsters!!
         </Typography>
       )}
+      {foundAll && <ShowBestScore />}
     </div>
   );
 }

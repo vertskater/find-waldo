@@ -11,5 +11,5 @@ export default function Timer() {
       clearInterval(counter);
     };
   }, [timer]);
-  return <div style={imgStyling}>{timer} Seconds</div>;
+  return [timer];
 }

@@ -4,8 +4,13 @@ import GetPicture from "./GetPicture";
 import PopUpMenu from "./PopUpMenu";
 import MenuBarTop from "./MenuBarTop";
 import useCoordinates from "./useCoordinates";
+import Timer from "./Timer";
+import InputName from "./InputName";
+import HandleForm from "./HandleForm";
 
 function App() {
+  const [handleChange, inputNameOpen, handleClose, handleSubscribe] =
+    HandleForm();
   const [menuOpen, setMenuOpen] = useState(null);
   const styling = {
     position: "absolute",
@@ -60,9 +65,11 @@ function App() {
   const handleMenuClose = () => {
     setMenuOpen(null);
   };
+  const [timer] = Timer();
+
   return (
     <>
-      <MenuBarTop foundMonster={foundMonster} />
+      <MenuBarTop foundMonster={foundMonster} timer={timer} />
       <div className="App" onClick={handleMenuOpen}>
         <div id="cursor" style={styling}></div>
         <PopUpMenu
@@ -74,6 +81,12 @@ function App() {
         />
         <GetPicture />
       </div>
+      <InputName
+        open={inputNameOpen}
+        handleClose={handleClose}
+        handleChange={handleChange}
+        handleSubscribe={handleSubscribe}
+      />
     </>
   );
 }
