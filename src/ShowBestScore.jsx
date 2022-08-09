@@ -9,7 +9,6 @@ import {
   doc,
   setDoc,
 } from "firebase/firestore";
-import { Scoreboard } from "@mui/icons-material";
 
 export default function ShowBestScore() {
   const [scoreBoard, setScoreBoard] = useState([]);
@@ -25,4 +24,15 @@ export default function ShowBestScore() {
       );
     });
   }, []);
+  useEffect(() => {
+    if (scoreBoard.length > 0) {
+      const docRef = doc(getFirestore(), "scores", scoreBoard[0].id);
+      setDoc(docRef, {
+        name: scoreBoard[0].name,
+        createdAt: scoreBoard[0].createdAt,
+        test: "test",
+      });
+    }
+  }, [scoreBoard]);
+  //return [scoreBoard];
 }

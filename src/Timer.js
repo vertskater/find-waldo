@@ -11,5 +11,6 @@ export default function Timer() {
       clearInterval(counter);
     };
   }, [timer]);
+
   return [timer];
 }
