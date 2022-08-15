@@ -7,22 +7,14 @@ import useCoordinates from "./useCoordinates";
 import Timer from "./Timer";
 import InputName from "./InputName";
 import HandleForm from "./HandleForm";
+import BestScore from "./BestScore";
 
 function App() {
+  const [startTime] = useState(new Date().getTime());
+  const [isGameboarReady, setIsGameBoardReady] = useState(false);
   const [handleChange, inputNameOpen, handleClose, handleSubscribe] =
     HandleForm();
   const [menuOpen, setMenuOpen] = useState(null);
-  const styling = {
-    position: "absolute",
-    width: 80,
-    height: 80,
-    border: "5px dotted black",
-    borderRadius: "50%",
-    transform: "translate(-50%, -50%)",
-    cursor: "none",
-    backgroundColor: "#ff000080",
-    opacity: menuOpen === null ? 1 : 0,
-  };
   const [handleSulley, handleMike, handleFuzzy, foundMonster] =
     useCoordinates();
   useEffect(() => {
@@ -66,10 +58,28 @@ function App() {
     setMenuOpen(null);
   };
   const [timer] = Timer();
-
+  const styling = {
+    position: "absolute",
+    width: 80,
+    height: 80,
+    border: "5px dotted black",
+    borderRadius: "50%",
+    transform: "translate(-50%, -50%)",
+    cursor: "none",
+    backgroundColor: "#ff000080",
+    opacity: menuOpen === null ? 1 : 0,
+  };
+  const handleGameBoardReady = () => {
+    setIsGameBoardReady(() => true);
+  };
   return (
     <>
-      <MenuBarTop foundMonster={foundMonster} timer={timer} />
+      <MenuBarTop
+        foundMonster={foundMonster}
+        timer={timer}
+        startTime={startTime}
+        ready={handleGameBoardReady}
+      />
       <div className="App" onClick={handleMenuOpen}>
         <div id="cursor" style={styling}></div>
         <PopUpMenu
@@ -87,6 +97,21 @@ function App() {
         handleChange={handleChange}
         handleSubscribe={handleSubscribe}
       />
+      {isGameboarReady && <BestScore />}
+      <span
+        style={{
+          color: "white",
+          textAlign: "center",
+          padding: 20,
+          position: "relative",
+          bottom: "63px",
+          left: 0,
+          zIndex: 999,
+          textShadow: "0 0  10px black",
+        }}
+      >
+        Art by Ulises Farinas and color by Melody Often
+      </span>
     </>
   );
 }

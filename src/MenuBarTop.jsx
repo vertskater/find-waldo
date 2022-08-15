@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import ShowBestScore from "./ShowBestScore";
 
-export default function MenuBarTop({ foundMonster, timer }) {
+export default function MenuBarTop({ foundMonster, timer, startTime, ready }) {
   const sullyImg = process.env.PUBLIC_URL + "/sully.webp";
   const mikeImg = process.env.PUBLIC_URL + "mike.webp";
   const fuzzyImg = process.env.PUBLIC_URL + "fuzzy.webp";
@@ -58,17 +58,13 @@ export default function MenuBarTop({ foundMonster, timer }) {
           </Typography>
         </div>
       )}
-      {foundAll === false && (
-        <div style={imgStyling}>
-          <span id="timer">{timer} </span> Seconds
-        </div>
-      )}
+      {foundAll === false && <div style={imgStyling}>{timer} Seconds</div>}
       {foundAll && (
         <Typography variant="h3" component="h3">
           Yeah you found all Monsters!!
         </Typography>
       )}
-      {foundAll && <ShowBestScore />}
+      {foundAll && <ShowBestScore startTime={startTime} ready={ready} />}
     </div>
   );
 }
