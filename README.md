@@ -18,7 +18,7 @@ The **Finding Waldo App** is a fun and interactive game where users can challeng
 
 ## 🚀 Live Demo
 
-👉 **[Play the Finding Waldo App](#)** *(Replace with your live demo URL)*
+👉 **[Play the Finding Waldo App](https://waldo-314a7.firebaseapp.com/)**
 
 ---
 
